@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import Chapter from '../Chapter'
 
 const input = `
-A Higher Order Component (abbreviated to HOC hereafter), is a function that accepts a component as an argument and returns a component.
+A HOC is a function that accepts a component as an argument and returns a component.
 
 Below is an example of a HOC. The function takes a \`BaseComponent\` as an argument and simply returns the \`BaseComponent\`. This isn't very useful, but it's the place we need to start. We'll get into slightly more complicated examples further in this chapter.
 
@@ -75,7 +75,7 @@ Now we can create a new \`Profile\` component with a \`name\` value that can't b
 \`\`\`js
 const AlwaysSteve = withName({ name: 'Steve' })(Profile)
 
-// Then you can use like any other component
+// Then you can use it like any other component
 <AlwaysSteve name='Kyle' /> // will still be Steve
 \`\`\`
 
