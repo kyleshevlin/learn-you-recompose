@@ -3,56 +3,18 @@ import ReactMarkdown from 'react-markdown'
 import Chapter from '../Chapter'
 
 const input = `
-A HOC is a function that accepts a component as an argument and returns a component.
-
-Below is an example of a HOC. The function takes a \`BaseComponent\` as an argument and simply returns the \`BaseComponent\`. This isn't very useful, but it's the place we need to start. We'll get into slightly more complicated examples further in this chapter.
+A HOC is a function that accepts a component as an argument and returns a new component. Let's start with the simplest example.
 
 \`\`\`js
-const hoc = BaseComponent => BaseComponent
+const hoc = BaseComponent => props => <BaseComponent {...props} />
 hoc(<MyComponent>) // <MyComponent>
 \`\`\`
 
-Now, a HOC that implements the identity function isn't very useful. So let's build something slightly better. Let's Now, most components in React utilize \`props\` and we can write our identity HOC with a slightly different pattern to represent this.
+Our function \`hoc()\` takes a \`BaseComponent\` as an argument, and returns a function that expects \`props\` and then simply returns a new component instance of the \`BaseComponent\` with the props spread onto the component. We could call this HOC an identity HOC.
 
-\`\`\`js
-const hoc = (BaseComponent, props) =>
-  <BaseComponent {...props} />
-\`\`\`
+Now, if you're paying attention, the function returned after passing the \`BaseComponent\` has the same function signature as a SFC, which is why we can pass an SFC as our \`BaseComponent\` and immediately get our new component.
 
-Here, our HOC accepts two arguments, our \`BaseComponent\` and a \`props\` object. It returns our component with the \`props\` spread over it.
-
-We can make this a bit more useful by introducing _currying_ to our function. Currying is when a function is modified to accept its arguments one at a time until all arguments are supplied and a value is returned. We accomplish this by returning functions that expect the next argument. A canonical example using an \`add()\` function is below.
-
-\`\`\`js
-// Without currying
-function add (x, y) { return x + y }
-
-add(3, 4) // 7
-
-// With currying
-function curriedAdd (x) {
-  return function (y) {
-    return x + y
-  }
-}
-
-curriedAdd(3)(4) // 7
-\`\`\`
-
-Curried functions are even easier to read as arrow functions because of their implicit return (and that an arity of one doesn't require parentheses around its argument). The same \`curriedAdd\` looks like the following as an arrow function.
-
-\`\`\`js
-const curriedAdd = x => y => x + y
-\`\`\`
-
-Now that we understand currying, we can apply this to our previous HOC passing \`props\` to our \`BaseComponent\`, like so:
-
-\`\`\`js
-const hoc = BaseComponent => props =>
-  <BaseComponent {...props} />
-\`\`\`
-
-Now we have something useful. If you're paying attention and familiar with React and Stateful Functional Components (hereafter abbreviated to SFC), then you might recognize the function signature of our \`hoc\` function as matching that of an SFC. We can take this pattern, and add further curried arguments to make an even more useful HOC.
+Creating a HOC that returns a new, but otherwise identical, component isn't very useful. Let's make a more useful HOC.
 
 Let's imagine we have a SFC that displays a person's name. Let's call it \`Profile\` and keep it very basic. It might look like this:
 
