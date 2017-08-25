@@ -1,8 +1,6 @@
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import Chapter from '../Chapter'
-
-const input = `
+export default {
+  title: 'What is Recompose?',
+  content: `
 Recompose is a utility library for React that takes advantage of the Higher Order Component (hereafter abbreviated to HOC) pattern. It allows you to build your application entirely of stateless functional components (hereafter abbreviated to SFC) and add functionality like state, lifecycle methods, and more through HOCs.
 
 For those who read this who might be new to React and unfamiliar with SFCs, allow me to give you a brief introduction. A SFC is a pure function that returns DOM (or rather VDOM to be specific) derived solely from its arguments. Let's look at a simple example. Perhaps I need a component that displays a name and an image, like so:
@@ -21,10 +19,4 @@ As I said previously, a SFC is a pure function. This means that given the same i
 
 Now, before we learn about the Recompose API which is full of HOCs, we should learn how to write our own.
 `
-
-const One = () =>
-  <Chapter number={1} heading="What is Recompose?">
-    <ReactMarkdown source={input} />
-  </Chapter>
-
-export default One
+}

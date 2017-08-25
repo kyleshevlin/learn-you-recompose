@@ -14,13 +14,13 @@ const enhance = compose(
 
 const Chapter = ({
   number,
-  heading,
+  title,
   isClosed,
   handleToggle,
   children
 }: {
   number: number,
-  heading: string,
+  title: string,
   isClosed: boolean,
   handleToggle: Function,
   children: any
@@ -31,7 +31,7 @@ const Chapter = ({
         {isClosed ? '[-]' : '[+]'}
       </button>
       <h2 className="chapter-heading">
-        Ch. {number} - {heading}
+        Ch. {number} - {title}
       </h2>
     </header>
 

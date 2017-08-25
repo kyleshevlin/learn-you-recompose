@@ -1,8 +1,6 @@
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import Chapter from '../Chapter'
-
-const input = `
+export default {
+  title: 'A Brief Intro to Functional Programming',
+  content: `
 You might be wondering why we're going through all this trouble wrapping our components with functions to return components. I admit at first, it seems like overkill and superfluous JavaScript, but it has a point and a great payoff.
 
 ### Compose
@@ -59,10 +57,4 @@ If you recall high school math, a function was generally represented \`f(x)\`. I
 
 We'll see this pattern as we explore Recompose. We will build up resuable enhancer functions through the composition of HOCs.
 `
-
-const Three = () =>
-  <Chapter number={3} heading={`A Brief Intro to Functional Programming`}>
-    <ReactMarkdown source={input} />
-  </Chapter>
-
-export default Three
+}

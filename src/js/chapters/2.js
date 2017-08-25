@@ -1,8 +1,6 @@
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import Chapter from '../Chapter'
-
-const input = `
+export default {
+  title: 'What is a Higher Order Component?',
+  content: `
 A HOC is a function that accepts a component as an argument and returns a new component. Let's start with the simplest example.
 
 \`\`\`js
@@ -45,10 +43,4 @@ Now you have a new Component that no matter what you do will have the name Steve
 
 Using these curried patterns, we will soon find out that we can build complex applications by sharing these reusable, composable, partially-applied functions.
 `
-
-const Two = () =>
-  <Chapter number={2} heading="What is a Higher Order Component?">
-    <ReactMarkdown source={input} />
-  </Chapter>
-
-export default Two
+}
